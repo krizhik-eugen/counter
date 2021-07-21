@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Display} from './Display';
+import {Button} from "./Button";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const startValue = 0
+    const finishValue = 5
+
+    const [value, setValue] = useState(startValue)
+
+    const callBackInc = () => {
+        value < finishValue && setValue(value + 1)
+    }
+    const callBackReset = () => {
+        setValue(startValue)
+    }
+
+    return (
+        <div className="counterWrapper">
+            <Display finishValue={finishValue} value={value}/>
+            <div className={'buttons'}>
+                <Button disabled={value === finishValue} value={value} buttonName={'inc'}
+                        callBack={() => callBackInc()}/>
+                <Button disabled={value === startValue} value={value} buttonName={'reset'} callBack={callBackReset}/>
+            </div>
+        </div>
+    );
 }
 
 export default App;
