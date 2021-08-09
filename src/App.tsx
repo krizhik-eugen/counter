@@ -1,14 +1,18 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Display} from './Display';
-import {Button} from "./Button";
+import {Counter} from "./Counter";
+import {CounterSettings} from "./CounterSettings";
 
 
 function App() {
-    const startValue = 0
-    const finishValue = 5
+    /*const startValue = 0
+    const finishValue = 5*/
+
+    const [startValue, setStartValue] = useState(0)
+    const [finishValue, setFinishValue] = useState(1)
 
     const [value, setValue] = useState(startValue)
+
 
     const callBackInc = () => {
         value < finishValue && setValue(value + 1)
@@ -17,14 +21,22 @@ function App() {
         setValue(startValue)
     }
 
+    const callBackSet = (min: number, max: number) => {
+        setStartValue(min);
+        setFinishValue(max);
+        setValue(min)
+    }
+
     return (
-        <div className="counterWrapper">
-            <Display finishValue={finishValue} value={value}/>
-            <div className={'buttons'}>
-                <Button disabled={value === finishValue} value={value} buttonName={'inc'}
-                        callBack={() => callBackInc()}/>
-                <Button disabled={value === startValue} value={value} buttonName={'reset'} callBack={callBackReset}/>
-            </div>
+        <div>
+            <CounterSettings callBackSet={callBackSet} />
+            <Counter
+                startValue={startValue}
+                finishValue={finishValue}
+                value={value}
+                callBackInc={callBackInc}
+                callBackReset={callBackReset}/>
+
         </div>
     );
 }

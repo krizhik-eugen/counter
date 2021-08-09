@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     width: 280px;
-    border: #05a9ca solid 3px;
+    border: #0cdfff solid 3px;
     border-radius: 5px;
     background-color: lightslategray;
 }
@@ -32,7 +32,7 @@
     padding: 10px;
     display: inline-flex;
     justify-content: space-around;
-    border: #05a9ca solid 3px;
+    border: #0cdfff solid 3px;
     border-radius: 5px;
     width: 220px;
 }
@@ -48,4 +48,32 @@
     border-radius: 5px;
     background-color: #0cdfff;
     font-size: 20px;
+}
+
+.inputAreaWrapper {
+    flex-direction: column;
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 220px;
+    height: 80px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0cdfff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.inputArea {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+
+}
+
+input {
+    width: 50px;
+    font-size: 20px;
+    text-align: center;
 }
