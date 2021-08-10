@@ -28,7 +28,7 @@ function App() {
     }
 
     return (
-        <div>
+        <div className={'appWrapper'}>
             <CounterSettings callBackSet={callBackSet} />
             <Counter
                 startValue={startValue}

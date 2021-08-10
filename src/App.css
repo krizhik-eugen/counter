@@ -1,11 +1,16 @@
-.counterWrapper {
+.appWrapper {
+    display: inline-flex;
     margin: 200px auto;
+}
+
+.counterWrapper {
     display: flex;
     flex-direction: column;
     width: 280px;
     border: #0cdfff solid 3px;
     border-radius: 5px;
     background-color: lightslategray;
+    margin: 50px;
 }
 
 .display {
