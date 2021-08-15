@@ -1,21 +1,40 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from "./Button";
-import { InputsArea } from './InputsArea';
+import {InputsArea} from './InputsArea';
 
 type CounterSettingsPropsType = {
-    callBackSet: (min: number, max: number) => void
+    callBackSet: (start: number, finish: number) => void
+    setWarning: (warning: boolean) => void
+    warning: boolean
+    error: boolean
+    setError: (error: boolean) => void
 }
 
 export const CounterSettings: React.FC<CounterSettingsPropsType> = (props) => {
-    const [startValue, setStartValue] = useState(0)
-    const [finishValue, setFinishValue] = useState(1)
+    const [startValue, setStartValue] = useState<number>(0)
+    const [finishValue, setFinishValue] = useState<number>(1)
+
+    useEffect(() => {
+        let currentStartValue = localStorage.getItem('start-value');
+        let currentFinishValue = localStorage.getItem('finish-value');
+        if (currentStartValue && currentFinishValue) {
+            setStartValue(JSON.parse(currentStartValue))
+            setFinishValue(JSON.parse(currentFinishValue))
+        }
+    }, [])
 
     return (
         <div className="counterWrapper">
-            <InputsArea setStartValue={setStartValue} setFinishValue={setFinishValue} startValue={startValue} finishValue={finishValue}/>
+            <InputsArea setStartValue={setStartValue}
+                        setFinishValue={setFinishValue}
+                        startValue={startValue}
+                        finishValue={finishValue}
+                        setWarning={props.setWarning}
+                        error={props.error}
+                        setError={props.setError}/>
             <div className={'buttons'}>
-                <Button /*disabled={props.value === props.finishValue}*/ buttonName={'set'}
-                        callBack={() => props.callBackSet(startValue,finishValue)}/>
+                <Button disabled={!props.warning || props.error} buttonName={'set'}
+                        callBack={() => props.callBackSet(startValue, finishValue)}/>
             </div>
         </div>
     )

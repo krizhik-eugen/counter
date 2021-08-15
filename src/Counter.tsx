@@ -8,17 +8,22 @@ type CounterPropsType = {
     value: number
     callBackInc: () => void
     callBackReset: () => void
+    error: boolean
+    warning: boolean
+   /* setSettingsDisplayOn: (settingsDisplayOn: boolean) => void*/
 }
 
 export const Counter: React.FC<CounterPropsType> = (props) => {
     return (
         <div className="counterWrapper">
-            <Display finishValue={props.finishValue} value={props.value}/>
+            <Display error={props.error} finishValue={props.finishValue} value={props.value}
+                     warningMessage={props.warning}/>
             <div className={'buttons'}>
-                <Button disabled={props.value === props.finishValue} buttonName={'inc'}
+                <Button disabled={props.value === props.finishValue || props.error || props.warning} buttonName={'inc'}
                         callBack={() => props.callBackInc()}/>
-                <Button disabled={props.value === props.startValue} buttonName={'reset'}
+                <Button disabled={props.value === props.startValue || props.error || props.warning} buttonName={'reset'}
                         callBack={props.callBackReset}/>
+                {/*<Button buttonName={'settings'} callBack={()=>(props.setSettingsDisplayOn(true))}/>*/}
             </div>
         </div>
     )
