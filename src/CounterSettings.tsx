@@ -10,7 +10,7 @@ type CounterSettingsPropsType = {
     setError: (error: boolean) => void
 }
 
-export const CounterSettings: React.FC<CounterSettingsPropsType> = (props) => {
+export const CounterSettings: React.FC<CounterSettingsPropsType> = React.memo((props) => {
     const [startValue, setStartValue] = useState<number>(0)
     const [finishValue, setFinishValue] = useState<number>(1)
 
@@ -20,6 +20,7 @@ export const CounterSettings: React.FC<CounterSettingsPropsType> = (props) => {
         if (currentStartValue && currentFinishValue) {
             setStartValue(JSON.parse(currentStartValue))
             setFinishValue(JSON.parse(currentFinishValue))
+            props.callBackSet(JSON.parse(currentStartValue), JSON.parse(currentFinishValue))
         }
     }, [])
 
@@ -38,4 +39,4 @@ export const CounterSettings: React.FC<CounterSettingsPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})

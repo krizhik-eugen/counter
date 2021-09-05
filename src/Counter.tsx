@@ -10,10 +10,10 @@ type CounterPropsType = {
     callBackReset: () => void
     error: boolean
     warning: boolean
-   /* setSettingsDisplayOn: (settingsDisplayOn: boolean) => void*/
+    /* setSettingsDisplayOn: (settingsDisplayOn: boolean) => void*/
 }
 
-export const Counter: React.FC<CounterPropsType> = (props) => {
+export const Counter: React.FC<CounterPropsType> = React.memo((props) => {
     return (
         <div className="counterWrapper">
             <Display error={props.error} finishValue={props.finishValue} value={props.value}
@@ -27,4 +27,4 @@ export const Counter: React.FC<CounterPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})

@@ -30,13 +30,6 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
                 displayValue: action.startValue,
                 warning: false
             }
-
-        /*case "SET-VALUES-FROM-LOCAL-STORAGE":
-            return {
-                ...state, displayValue: action.value
-            }*/
-
-
         default:
             return state
     }
@@ -64,9 +57,13 @@ export const setValuesAC = (startValue: number, finishValue: number) => {
         finishValue,
     } as const
 }
+
+
+/*
 export const setValuesFromLocalStorageAC = (value: number) => {
     return {type: 'SET-VALUES-FROM-LOCAL-STORAGE', value} as const
 }
+*/
 
 
 export type IncDisplayValueAT = ReturnType<typeof incDisplayValueAC>
@@ -75,10 +72,10 @@ export type SetErrorAT = ReturnType<typeof setErrorAC>
 export type SetWarningAT = ReturnType<typeof setWarningAC>
 export type SetValuesAT = ReturnType<typeof setValuesAC>
 
-export type SetValuesFromLocalStorageAT = ReturnType<typeof setValuesFromLocalStorageAC>
+// export type SetValuesFromLocalStorageAT = ReturnType<typeof setValuesFromLocalStorageAC>
 
 export type ActionType = IncDisplayValueAT
-    | SetValuesFromLocalStorageAT
+    // | SetValuesFromLocalStorageAT
     | ResetDisplayValueAT
     | SetErrorAT
     | SetWarningAT

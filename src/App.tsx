@@ -32,7 +32,6 @@ function App() {
         dispatch(setValuesAC(start, finish))
     }
 
-
     /*const [startValue, setStartValue] = useState<number>(0)
     const [finishValue, setFinishValue] = useState<number>(1)
     const [displayValue, setDisplayValue] = useState<number>(startValue)
@@ -72,6 +71,7 @@ function App() {
 
     /!*const [settingsDisplayOn, setSettingsDisplayOn] = useState<boolean>(false)*!/ //для работы в одном окне
 */
+    
     return (
         <div className={'appWrapper'}>
             {/*{settingsDisplayOn ?*/}

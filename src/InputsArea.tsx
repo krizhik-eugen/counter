@@ -10,7 +10,7 @@ type InputsAreaPropsType = {
     setError: (error: boolean) => void
 }
 
-export const InputsArea: React.FC<InputsAreaPropsType> = (props) => {
+export const InputsArea: React.FC<InputsAreaPropsType> = React.memo((props) => {
 
     const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.setFinishValue(Number(e.currentTarget.value))
@@ -57,4 +57,4 @@ export const InputsArea: React.FC<InputsAreaPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})
