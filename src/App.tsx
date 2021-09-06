@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {Counter} from "./Counter";
 import {CounterSettings} from "./CounterSettings";
@@ -16,21 +16,21 @@ function App() {
     const error = useSelector<AppStateType, boolean>(store => store.counter.error)
     const warning = useSelector<AppStateType, boolean>(store => store.counter.warning)
 
-    const callBackInc = () => {
+    const callBackInc = useCallback(() => {
         displayValue < finishValue && dispatch(incDisplayValueAC())
-    };
-    const callBackReset = () => {
+    }, [dispatch, displayValue, finishValue]);
+    const callBackReset = useCallback(() => {
         dispatch(resetDisplayValueAC())
-    };
-    const setError = (error: boolean) => {
+    }, [dispatch]);
+    const setError = useCallback((error: boolean) => {
         dispatch(setErrorAC(error))
-    };
-    const setWarning = (warning: boolean) => {
+    },[dispatch])
+    const setWarning = useCallback((warning: boolean) => {
         dispatch(setWarningAC(warning))
-    };
-    const callBackSet = (start: number, finish: number) => {
+    },[dispatch]);
+    const callBackSet = useCallback((start: number, finish: number) => {
         dispatch(setValuesAC(start, finish))
-    }
+    },[dispatch])
 
     /*const [startValue, setStartValue] = useState<number>(0)
     const [finishValue, setFinishValue] = useState<number>(1)
@@ -70,11 +70,11 @@ function App() {
     }
 
     /!*const [settingsDisplayOn, setSettingsDisplayOn] = useState<boolean>(false)*!/ //для работы в одном окне
-*/
+*/ //<- старый код без редакс
     
     return (
         <div className={'appWrapper'}>
-            {/*{settingsDisplayOn ?*/}
+            {/*{settingsDisplayOn ?  */}  {/*//для работы одного окна*/}
             <CounterSettings
                 callBackSet={callBackSet}
                 setWarning={setWarning}

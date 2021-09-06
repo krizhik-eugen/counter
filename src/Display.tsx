@@ -7,7 +7,7 @@ type DisplayPropsType = {
     warningMessage: boolean
 }
 
-export const Display: React.FC<DisplayPropsType> = (props) => {
+export const Display: React.FC<DisplayPropsType> = React.memo((props) => {
     return (
         <div className={'display'}>
             {props.error ? <span className={'displayError'}>Incorrect values</span> :
@@ -15,4 +15,4 @@ export const Display: React.FC<DisplayPropsType> = (props) => {
                     <span className={props.value === props.finishValue ? 'displayRed' : ''}>{props.value}</span>}
         </div>
     )
-}
+})
